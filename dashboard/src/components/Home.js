@@ -6,7 +6,7 @@ import TopBar from "./TopBar";
 const Home = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "http://localhost:3001/login";
+    window.location.href = "https://zerodha-vishal.netlify.app/login";
   };
 
   return (

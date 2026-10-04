@@ -19,13 +19,13 @@ if (tokenFromUrl) {
 
 const token = localStorage.getItem("token");
 
-const loginUrl = "http://localhost:3001/login";
+const loginUrl = "https://zerodha-vishal.netlify.app/login";
 
 if (!token) {
   window.location.href = loginUrl;
 } else {
   axios
-    .get("http://localhost:3002/verify-token", {
+    .get(`${process.env.REACT_APP_BACKEND_URL}/verify-token`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
