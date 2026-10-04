@@ -576,6 +576,24 @@ hr {
   z-index: 9;
 }
 
+.logout-btn {
+  margin-left: auto;
+  margin-right: 25px;
+  padding: 8px 18px;
+  background: white;
+  color: #387ed1;
+  border: 1px solid #387ed1;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #387ed1;
+  color: white;
+}
+
 .indices-container {
   flex-basis: 32%;
   height: 100%;

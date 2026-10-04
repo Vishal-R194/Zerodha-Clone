@@ -34,7 +34,7 @@ function Signup() {
 
       if (res.data.success === true) {
         alert("Signup successful! Please login.");
-        window.location.href = "http://localhost:3001/login";
+        window.location.href = "https://zerodha-vishal.netlify.app/login";
       } else {
         alert(res.data.message);
       }
