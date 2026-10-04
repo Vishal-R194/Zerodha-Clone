@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function Signup() {
+function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,28 +19,30 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Backend URL:", process.env.REACT_APP_BACKEND_URL);
-
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/signup`,
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
         formData,
         {
           withCredentials: true,
         }
       );
 
-      console.log(res.data);
+      console.log(res.data.message);
 
-      if (res.data.success === true) {
-        alert("Signup successful! Please login.");
-        window.location.href = "http://localhost:3001/login";
-      } else {
-        alert(res.data.message);
+     if (res.data.success === false) {
+       alert(res.data.message);
+     } else if (res.data.success === true) {
+      console.log("TOKEN:", res.data.token);
+       localStorage.setItem("token", res.data.token);
+
+       window.location.href = `${process.env.REACT_APP_DASHBOARD_URL}?token=${res.data.token}`;
+     } else {
+        alert(res.data.error);
       }
     } catch (error) {
       console.error(error);
-      alert("Signup failed. Please try again.");
+      alert("Login failed. Please try again.");
     }
   };
 
@@ -58,6 +60,14 @@ function Signup() {
             onChange={handleInput}
             required
           />
+
+          <div className="form-text">
+            We'll never share your email with anyone else.
+          </div>
+
+          <div className="invalid-feedback">
+            Enter email!
+          </div>
         </div>
 
         <div className="mb-4">
@@ -70,8 +80,11 @@ function Signup() {
             value={formData.phone}
             placeholder="(+91)"
             onChange={handleInput}
-            required
           />
+
+          <div className="invalid-feedback">
+            Enter mobile number!
+          </div>
         </div>
 
         <div className="mb-4">
@@ -83,20 +96,19 @@ function Signup() {
             name="password"
             value={formData.password}
             onChange={handleInput}
-            required
           />
         </div>
 
-        <button type="submit" className="btn btn-primary mb-4">
-          Sign Up
+        <button className="btn btn-primary mb-4">
+          Login
         </button>
 
         <br />
         <br />
 
         <p>
-          Already have an account?{" "}
-          <Link to="/login">Login</Link>
+          Create new account?{" "}
+          <Link to="/signup">SignUp</Link>
         </p>
 
         <br />
@@ -106,4 +118,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;
