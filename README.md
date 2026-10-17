@@ -252,4 +252,10 @@ Through this project, I practiced:
 
 ---
 
+# Screenshots#
+1. home.png
+2. sign-up.png
+3. dashboard.png
+4. funds.png
+
 *This is an independent educational project inspired by a stock trading platform. It is not an official Zerodha product and is not intended to provide financial advice.*
